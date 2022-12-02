@@ -14,6 +14,19 @@ paint* typeCreation(string color,double gloss_level,double inventory);
 
 int main(void)
 {
+    paint *  allPaintStuff[7];
+    string arrayOfColors[7];string arrayOfGlossLvl[7];string arrayOfInventory[7];
+    for(int i=0;i<7;i++){
+        arrayOfColors[i]="RED";
+        arrayOfGlossLvl[i]="1.2";
+        arrayOfInventory[i]="1.2";
+    }
+  
+
+
+
+
+
 
 }
 
@@ -33,7 +46,10 @@ void readInFromFile(string arrayOfColors[],string arrayOfGlossLvl[],string array
             loopThroughFile(arrayOfColors,arrayOfGlossLvl,arrayOfInventory,in);
 
             if(validDatainFile(arrayOfGlossLvl,7)&& validDatainFile(arrayOfInventory,7)){
-            break;}
+                if(validGlossLvl(arrayOfGlossLvl)){
+                    break;
+                }
+            }
             else{
             cout<<"Invalid data was in the file. Please try again.\n";
             }
