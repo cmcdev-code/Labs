@@ -19,6 +19,10 @@ class Eggshell :public paint
     {
         cout<<"\n Invoking the Eggshell two argument constructor.\n";
     }
+    Eggshell(string color,double gloss_level,double inventory):paint(color,gloss_level,inventory)
+    {
+        cout<<"\n Invoking the Eggshell three argument constructor.\n";
+    }
     
     
 

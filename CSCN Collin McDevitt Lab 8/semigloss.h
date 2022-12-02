@@ -19,5 +19,9 @@ class semiGloss :public paint
     {
         cout<<"\n Invoking the Semi-gloss two argument constructor.\n";
     }
+    semiGloss(string color,double gloss_level,double inventory):paint(color,gloss_level,inventory)
+    {
+        cout<<"\n Invoking the Semi-gloss three argument constructor.\n";
+    }
 
 };

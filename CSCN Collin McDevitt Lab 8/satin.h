@@ -19,7 +19,10 @@ class satin :public paint
     {
         cout<<"\n Invoking the satin two argument constructor.\n";
     }
-
+    satin(string color,double gloss_level,double inventory):paint(color,gloss_level,inventory)
+    {
+        cout<<"\n Invoking the satin three argument constructor.\n";
+    }
 
 
 

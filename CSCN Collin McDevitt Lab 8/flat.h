@@ -19,5 +19,9 @@ class flat :public paint
     {
         cout<<"\n Invoking the flat two argument constructor.\n";
     }
+    flat(string color,double gloss_level,double inventory):paint(color,gloss_level,inventory)
+    {
+        cout<<"\n Invoking the flat three argument constructor.\n";
+    }
 
 };
