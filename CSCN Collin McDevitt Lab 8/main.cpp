@@ -71,15 +71,15 @@ bool validDatainFile(string dataFromFile[],int length)
 paint* typeCreation(string color,double gloss_level,double inventory)
 {
     if(gloss_level>=0.1 && gloss_level<=5.0){
-        return new flat(color,gloss_level);
+        return new flat(color,gloss_level,inventory);
     }elif(gloss_level>=10.5 and gloss_level<=25.0){
-        return new Eggshell(color,gloss_level);}
+        return new Eggshell(color,gloss_level,inventory);}
     elif(gloss_level>=25.5 and gloss_level<=35.0){
-        return new satin(color,gloss_level);
+        return new satin(color,gloss_level,inventory);
     }elif(gloss_level>=35.5 and gloss_level<=70.0){
-        return new semiGloss(color,gloss_level);
+        return new semiGloss(color,gloss_level,inventory);
     }elif(gloss_level>=85.0 and gloss_level<=95.0){
-        return new highGloss(color,gloss_level);}
+        return new highGloss(color,gloss_level,inventory);}
     else{
         return nullptr;
     }
