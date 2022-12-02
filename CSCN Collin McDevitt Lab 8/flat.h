@@ -10,10 +10,7 @@ class flat :public paint
     flat():paint()
     {
         cout<<"\nInvoking the flat default constructor.\n";
-        std::random_device rd;
-        std::default_random_engine num(rd());
-        std::uniform_real_distribution<double> randomNum(0.1, 5.0);
-        setGlossLevel(randomNum(num));
+       
     }
     flat(string color, double gloss_level):paint (color , gloss_level)
     {

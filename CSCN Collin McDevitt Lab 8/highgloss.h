@@ -10,18 +10,11 @@ class highGloss :public paint
     highGloss():paint()
     {
         cout<<"\nInvoking the high-gloss default constructor.\n";
-        std::random_device rd;
-        std::default_random_engine num(rd());
-        std::uniform_real_distribution<double> randomNum(85,95);
-        setGlossLevel(randomNum(num));
+  
     }
     highGloss(string color, double gloss_level):paint (color , gloss_level)
     {
         cout<<"\n Invoking the high-gloss two argument constructor.\n";
-    }
-    highGloss(string color,double gloss_level,double inventory):paint(color,gloss_level,inventory)
-    {
-        cout<<"\n Invoking the high-gloss three argument constructor.\n";
     }
 
 };

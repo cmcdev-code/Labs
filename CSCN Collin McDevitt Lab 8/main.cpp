@@ -6,6 +6,8 @@ using namespace std;
 void readInFromFile(string arrayOfColors[],string arrayOfGlossLvl[],string arrayOfInventory[]);
 void loopThroughFile(string arrayOfColors[],string arrayOfGlossLvl[],string arrayOfInventory[],ifstream& in);
 bool validDatainFile(string dataFromFiile[],int length);
+string askForPaintColor();
+double rngNum(double lower,double upper);
 
 paint* typeCreation(string color,double gloss_level,double inventory);
 
@@ -38,8 +40,6 @@ void readInFromFile(string arrayOfColors[],string arrayOfGlossLvl[],string array
     }
 
 }
-
-
 
 void loopThroughFile(string arrayOfColors[],string arrayOfGlossLvl[],string arrayOfInventory[],ifstream& in)
 {
@@ -83,4 +83,18 @@ paint* typeCreation(string color,double gloss_level,double inventory)
     else{
         return nullptr;
     }
+}
+string askForPaintColor()
+{
+    string color;
+    cout<<"\nWhat color is this paint?\n";
+    getline(cin>>ws,color);
+    return color;
+}
+double rngNum(double lower,double upper)
+{
+    std::random_device rd;
+    std::default_random_engine num(rd());
+    std::uniform_real_distribution<double> randomNum(lower,upper);
+    return randomNum(num);
 }

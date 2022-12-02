@@ -10,10 +10,7 @@ class satin :public paint
     satin():paint()
     {
         cout<<"\nInvoking the satin default constructor.\n";
-        std::random_device rd;
-        std::default_random_engine num(rd());
-        std::uniform_real_distribution<double> randomNum(25.5, 35);
-        setGlossLevel(randomNum(num));
+        
     }
     satin(string color, double gloss_level):paint (color , gloss_level)
     {
