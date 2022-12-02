@@ -16,5 +16,9 @@ class highGloss :public paint
     {
         cout<<"\n Invoking the high-gloss two argument constructor.\n";
     }
+    highGloss(string color,double gloss_level,double inventory):paint(color,gloss_level,inventory)
+    {
+        cout<<"\n Invoking the high-gloss three argument constructor.\n";
+    }
 
 };

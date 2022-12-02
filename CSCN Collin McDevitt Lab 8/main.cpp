@@ -8,6 +8,7 @@ void loopThroughFile(string arrayOfColors[],string arrayOfGlossLvl[],string arra
 bool validDatainFile(string dataFromFiile[],int length);
 string askForPaintColor();
 double rngNum(double lower,double upper);
+bool validGlossLvl(string glossLvl[]);
 
 paint* typeCreation(string color,double gloss_level,double inventory);
 
@@ -31,7 +32,7 @@ void readInFromFile(string arrayOfColors[],string arrayOfGlossLvl[],string array
         }else{
             loopThroughFile(arrayOfColors,arrayOfGlossLvl,arrayOfInventory,in);
 
-            if(validDatainFile(arrayOfGlossLvl,3)&& validDatainFile(arrayOfInventory,3)){
+            if(validDatainFile(arrayOfGlossLvl,7)&& validDatainFile(arrayOfInventory,7)){
             break;}
             else{
             cout<<"Invalid data was in the file. Please try again.\n";
@@ -97,4 +98,14 @@ double rngNum(double lower,double upper)
     std::default_random_engine num(rd());
     std::uniform_real_distribution<double> randomNum(lower,upper);
     return randomNum(num);
+}
+bool validGlossLvl(string glossLvl[])
+{  bool valid =true;
+    for(int i=0;i<7;i++){
+        double num=stod(glossLvl[i]);
+        if(num<0.1||(num>5 and num<10.5)||(num>25 and num<25.5)||(num>35 and num<35.5)||(num>70 and num<85)||(num>95)){
+            valid= false;
+        }
+    }
+    return valid;
 }
