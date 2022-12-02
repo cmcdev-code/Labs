@@ -24,7 +24,13 @@ paint(string color, double gloss_level)
     this->gloss_level=gloss_level;
     this->inventory=0;
 }
-
+paint(string color,double gloss_level,double inventory)
+{
+    cout<<"\nInvoking the three argument constructor.\n";
+    this->color=color;
+    this->gloss_level=gloss_level;
+    this->inventory=inventory;
+}
 
 
 void setInventory(double inventory){this->inventory=inventory;}
