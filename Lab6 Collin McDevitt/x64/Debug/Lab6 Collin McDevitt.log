@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\Users\colli\source\repos\Lab6 Collin McDevitt\main.cpp(234,20): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Lab6 Collin McDevitt.vcxproj -> C:\Users\colli\source\repos\Lab6 Collin McDevitt\x64\Debug\Lab6 Collin McDevitt.exe

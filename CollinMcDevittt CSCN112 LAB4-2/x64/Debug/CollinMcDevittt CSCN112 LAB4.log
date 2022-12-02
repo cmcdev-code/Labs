@@ -1,0 +1,7 @@
+﻿  Room.cpp
+  house.cpp
+C:\Users\colli\source\repos\CollinMcDevittt CSCN112 LAB4\house.cpp(49,35): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  main.cpp
+C:\Users\colli\source\repos\CollinMcDevittt CSCN112 LAB4\main.cpp(98,61): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+  CollinMcDevittt CSCN112 LAB4.vcxproj -> C:\Users\colli\source\repos\CollinMcDevittt CSCN112 LAB4\x64\Debug\CollinMcDevittt CSCN112 LAB4.exe

@@ -1,0 +1,4 @@
+﻿  department.cpp
+C:\Users\colli\source\repos\Collin McDevitt CSCN 112\department.cpp(56,28): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\colli\source\repos\Collin McDevitt CSCN 112\department.cpp(72,44): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  Collin McDevitt CSCN 112.vcxproj -> C:\Users\colli\source\repos\Collin McDevitt CSCN 112\x64\Debug\Collin McDevitt CSCN 112.exe
