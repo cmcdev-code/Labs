@@ -108,30 +108,39 @@ int main()
     
     }
 
-    
-    for(int i=0;i<7;i++){
+    //deleting the objects
+    for(int i=0;i<7;i++)
+    {
         delete allPaintStuff[i];
     }
+
 
     return 0;
 }
 
-
+//function to ask for the name of the file and see if it can be oppened and get the data from it 
 void readInFromFile(string arrayOfColors[],string arrayOfGlossLvl[],string arrayOfInventory[])
 {
 
     string Fname;
     while(true){
     cout<<"\nWhat is the name of the file?\n";
+    //getting the name of the file from the user 
     getline(cin>>ws,Fname);
+    //creating ifstream object
     ifstream in;
     in.open(Fname);
+        //if the file can't be oppened then it will ask for the name of a different file 
         if(in.fail()){
+
         cout<<"Couldn't open the file. Please try again.\n";
+        
         }else{
+            //will loop through the file and will store the data that it gets in three string arrays
             loopThroughFile(arrayOfColors,arrayOfGlossLvl,arrayOfInventory,in);
-            
+            //checks wheather the string arrays can be converted to a string 
             if(validDatainFile(arrayOfGlossLvl,7)&& validDatainFile(arrayOfInventory,7)){
+                //checks wheather the data in the arrays is in the right ranges for the gloss level 
                 if(validGlossLvl(arrayOfGlossLvl,7)){
                     break;
                 }
@@ -140,12 +149,12 @@ void readInFromFile(string arrayOfColors[],string arrayOfGlossLvl[],string array
             else{
             cout<<"Invalid data was in the file. Please try again.\n";
             }
-        }
+        }//closing the file object
         in.close();
     }
 
 }
-
+//will loop through the file 7 times and store the data in the arrays
 void loopThroughFile(string arrayOfColors[],string arrayOfGlossLvl[],string arrayOfInventory[],ifstream& in)
 {
 
@@ -157,6 +166,7 @@ void loopThroughFile(string arrayOfColors[],string arrayOfGlossLvl[],string arra
 
     }
 }
+//function that will try to convert everything in the array to a double and if it can't then it will return false
 bool validDatainFile(string dataFromFile[],int length)
 {
     try
@@ -172,8 +182,10 @@ bool validDatainFile(string dataFromFile[],int length)
     }
     return true;
 }
+//function that will create and object and return it depening on the gloss_level for the file
 paint* typeCreation(string color,double gloss_level,double inventory)
 {
+    //if the gloss level is in the range from 0.1 to 5 then it will have to be a flat paint type and will create that and return it 
     if(gloss_level>=0.1 and gloss_level<=5.0){
         return new flat(color,gloss_level,inventory);
     }elif(gloss_level>=10.5 and gloss_level<=25.0){
@@ -185,9 +197,10 @@ paint* typeCreation(string color,double gloss_level,double inventory)
     }elif(gloss_level>=85.0 and gloss_level<=95.0){
         return new highGloss(color,gloss_level,inventory);}
     else{
-        return nullptr;
+        return nullptr;//if for some reason the other error checking didn't work then it will just retunr nullptr
     }
 }
+//will ask for the paint color form the user and will return it
 string askForPaintColor()
 {
     string color;
@@ -195,6 +208,7 @@ string askForPaintColor()
     getline(cin>>ws,color);
     return color;
 }
+//will create a random number in the range and will return it
 double rngNum(double lower,double upper)
 {
     std::random_device rd;
@@ -202,6 +216,7 @@ double rngNum(double lower,double upper)
     std::uniform_real_distribution<double> randomNum(lower,upper);
     return randomNum(num);
 }
+//checks wheather the gloss level that is in the array is valid or not 
 bool validGlossLvl(string glossLvl[],int length)
 {  bool valid =true;
     for(int i=0;i<length;i++){
@@ -212,14 +227,19 @@ bool validGlossLvl(string glossLvl[],int length)
     }
     return valid;
 }
+
+//this is the option if they chose not to read the data in from the file 
 paint* typeCreation(int choice)
 {
-    
+    //will ask for the color of the paint
     string color=askForPaintColor();
+    //will ask for how much inventory there is
     double inventoryLeft=userInput("How much inventory is left?",0,10000);
+    //if they choice is one then it will be flat type and this will dynamically create it and return it 
     if(choice==1){
     return new flat(color,rngNum(0.1,5.0),inventoryLeft);
     }
+    //same as the rest but for the other gloss levels 
     elif(choice==2){
     return new Eggshell(color,rngNum(10.5,25.0),inventoryLeft);
     }
@@ -236,6 +256,7 @@ paint* typeCreation(int choice)
         return nullptr;
     }   
 }
+//asks for user input and will output the string that goes in and will error check between the bounds
 double userInput(string txtOut,double lower,double upper){
  double userIn;
     while (true)
@@ -257,6 +278,7 @@ double userInput(string txtOut,double lower,double upper){
 
     return userIn;
 }
+//asks for user input and will output the string that goes in and will error check between the bounds
 int userInput(string txtOut,int lower,int upper){
  int userIn;
     while (true)
@@ -278,6 +300,7 @@ int userInput(string txtOut,int lower,int upper){
 
     return userIn;
 }
+//will output the menu opti0ns depending on the int that is passed in 
 void userChoiceOfPaint(int flag){
     cout<<"\n(1) Flat Paint\n";
     cout<<"(2) Eggshell Paint\n";
@@ -286,7 +309,7 @@ void userChoiceOfPaint(int flag){
     cout<<"(5) High-Gloss Paint\n";
     cout<<((flag==0) ? "(6) Load Inventory from a File\n" : "\n");
 }
-
+//menu after the array is filled with objects 
 void menuAfterChoice()
 {
     cout<<"\n Please choose from one of the following options:\n";
@@ -295,18 +318,15 @@ void menuAfterChoice()
     cout<<"(3) View Current inventory\n";
     cout<<"(4) Print inventory to File\n";
     cout<<"(5) Quit\n";
-
-
-
-
 }
+//prints all the different paints that are in the array 
 void printAllPaints(paint* paintArray[],int length)
 {cout<<"#:      Paint Color   Number of Cans  Gloss level(%)\n";
 for(int i=0;i<length;i++){
-    cout<<i+1<<*paintArray[i]<<endl;
+    cout<<i+1<<*paintArray[i]<<endl;//overloaded the << operator 
 }
-
 }
+//prints the data to a file
 void printToFile(paint* paintArray[],int length)
 {
     while(true){
@@ -315,6 +335,8 @@ void printToFile(paint* paintArray[],int length)
     string nameOfFile="";
     getline(cin>>ws,nameOfFile);
 
+    //asks user for name of the file and attempts to open it if it can't open it then it will tell them and ask for the name of a new file
+    //if it can open it then it will print that data that is in that object in the same format that data is read in from files 
     out.open(nameOfFile);
     if(!out.fail()){
         
