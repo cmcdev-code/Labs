@@ -51,12 +51,14 @@ int main(void)
         //prints the options avaliable to the user
         userChoiceOfPaint(i);
 
-    
+                                                            //will only ouput 6 if it is on the first loop
         int userChoice=userInput("Please enter your choice: ",1,(i==0) ? 6:5);
         if(userChoice==6){
-            
+            //creating array of strings to hold the data that is read in from the file into 
             string arrayOfColors[7];string arrayOfGlossLvl[7];string arrayOfInventory[7];
+            //reading the data in from the file and will ask the user for the name of the file and do the error checking 
             readInFromFile(arrayOfColors,arrayOfGlossLvl,arrayOfInventory);
+            
             for(int i=0;i<7;i++)
             {
                 allPaintStuff[i]=typeCreation(arrayOfColors[i],stod(arrayOfGlossLvl[i]),stod(arrayOfInventory[i]));
