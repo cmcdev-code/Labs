@@ -15,13 +15,30 @@ paint* typeCreation(int choice);
 
 double userInput(string txtOut,double lower,double upper);
 int userInput(string txtOut,int lower,int upper);
+void userChoiceOfPaint(int flag);
  
 int main(void)
 {
     paint *  allPaintStuff[7];
-    string arrayOfColors[7];string arrayOfGlossLvl[7];string arrayOfInventory[7];
     
-  
+    cout<<"Please choose from the following options: \n";
+    for(int i=0;i<7;i++)
+    {
+        userChoiceOfPaint(i);
+        int userChoice=userInput("Please enter your choice: ",1,(i==0) ? 6:5);
+        if(userChoice==6){
+            
+            string arrayOfColors[7];string arrayOfGlossLvl[7];string arrayOfInventory[7];
+            readInFromFile(arrayOfColors,arrayOfGlossLvl,arrayOfInventory);
+            for(int i=0;i<7;i++)
+            {
+                allPaintStuff[i]=typeCreation(arrayOfColors[i],stod(arrayOfGlossLvl[i]),stod(arrayOfInventory[i]));
+            }break;
+        }
+        else {
+            allPaintStuff[i]=typeCreation(userChoice);
+        }
+    }
 
 
 
@@ -44,7 +61,9 @@ void readInFromFile(string arrayOfColors[],string arrayOfGlossLvl[],string array
         cout<<"Couldn't open the file. Please try again.\n";
         }else{
             loopThroughFile(arrayOfColors,arrayOfGlossLvl,arrayOfInventory,in);
-
+            for(int i=0;i<7;i++){
+                cout<<arrayOfColors[i]<<" "<<arrayOfInventory[i]<<" "<<arrayOfGlossLvl[i]<<endl;
+            }
             if(validDatainFile(arrayOfGlossLvl,7)&& validDatainFile(arrayOfInventory,7)){
                 if(validGlossLvl(arrayOfGlossLvl,7)){
                     break;
@@ -65,9 +84,9 @@ void loopThroughFile(string arrayOfColors[],string arrayOfGlossLvl[],string arra
     for(int i=0;i<7;i++)
     {
         getline(in>>ws,arrayOfColors[i]);
-        getline(in>>ws,arrayOfGlossLvl[i]);
         getline(in>>ws,arrayOfInventory[i]);
-        getline(in>>ws,emptyString);
+        getline(in>>ws,arrayOfGlossLvl[i]);
+
     }
 }
 bool validDatainFile(string dataFromFile[],int length)
@@ -190,4 +209,12 @@ int userInput(string txtOut,int lower,int upper){
     }
 
     return userIn;
+}
+void userChoiceOfPaint(int flag){
+    cout<<"\n(1) Flat Paint\n";
+    cout<<"(2) Eggshell Paint\n";
+    cout<<"(3) Satin Paint\n";
+    cout<<"(4) Semi-Gloss Paint\n";
+    cout<<"(5) High-Gloss Paint\n";
+    cout<<((flag==0) ? "(6) Load Inventory from a File\n" : "\n");
 }
