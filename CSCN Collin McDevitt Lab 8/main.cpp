@@ -1,36 +1,57 @@
-#include "class.h"
+#include "flat.h"
+#include "eggshell.h"
+#include "satin.h"
+#include "semigloss.h"
+#include "highgloss.h"
 #include <fstream>
+#include <random>
 #define elif else if
 
 
 using namespace std;
+//function to read in from the file
 void readInFromFile(string arrayOfColors[],string arrayOfGlossLvl[],string arrayOfInventory[]);
+//function to loop through the file  and store the data in into the arrays
 void loopThroughFile(string arrayOfColors[],string arrayOfGlossLvl[],string arrayOfInventory[],ifstream& in);
+//function that checks wheather the data that is in the arrays can be converted to a double
 bool validDatainFile(string dataFromFiile[],int length);
-string askForPaintColor();
-double rngNum(double lower,double upper);
+//function that checks wheather the array has values that can actually be the gloss level of the paint
 bool validGlossLvl(string glossLvl[],int length);
+//function that will ask for the paint color 
+string askForPaintColor();
+//function that will make a random number between the lower and upper bounds 
+double rngNum(double lower,double upper);
 
+//dynamically creates object depending on the choice or depending on the gloss level from the file
 paint* typeCreation(string color,double gloss_level,double inventory);
 paint* typeCreation(int choice);
 
+//error checks user input
 double userInput(string txtOut,double lower,double upper);
 int userInput(string txtOut,int lower,int upper);
+
+//will output the different paint types and will output the option to get the paint types from a file if the flag is ==0 
 void userChoiceOfPaint(int flag);
-
+//menu that will be outputed after the array is full of the different objects
 void menuAfterChoice();
+//will output the current inventory for the paint
 void printAllPaints(paint* paintArray[],int length);
-
+//will output the data to a file that is in the correct format
 void printToFile(paint* paintArray[],int length);
 
 int main(void)
 {
+    //array of pointers to the base class that will hold the classes that inherit from the base class
     paint *  allPaintStuff[7];
     
+
     cout<<"Please choose from the following options: \n";
     for(int i=0;i<7;i++)
-    {
+    {   
+        //prints the options avaliable to the user
         userChoiceOfPaint(i);
+
+    
         int userChoice=userInput("Please enter your choice: ",1,(i==0) ? 6:5);
         if(userChoice==6){
             

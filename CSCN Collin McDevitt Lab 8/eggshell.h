@@ -1,5 +1,4 @@
 #pragma once
-#include <random>
 #include "paint.h"//base class
 
 class Eggshell :public paint

@@ -1,6 +1,5 @@
 #pragma once
 #include "paint.h"//base class
-#include <random>
 
 class satin :public paint
 {
