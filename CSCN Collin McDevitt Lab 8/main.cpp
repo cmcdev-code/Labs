@@ -16,7 +16,10 @@ paint* typeCreation(int choice);
 double userInput(string txtOut,double lower,double upper);
 int userInput(string txtOut,int lower,int upper);
 void userChoiceOfPaint(int flag);
- 
+
+void menuAfterChoice();
+
+
 int main(void)
 {
     paint *  allPaintStuff[7];
@@ -61,13 +64,12 @@ void readInFromFile(string arrayOfColors[],string arrayOfGlossLvl[],string array
         cout<<"Couldn't open the file. Please try again.\n";
         }else{
             loopThroughFile(arrayOfColors,arrayOfGlossLvl,arrayOfInventory,in);
-            for(int i=0;i<7;i++){
-                cout<<arrayOfColors[i]<<" "<<arrayOfInventory[i]<<" "<<arrayOfGlossLvl[i]<<endl;
-            }
+            
             if(validDatainFile(arrayOfGlossLvl,7)&& validDatainFile(arrayOfInventory,7)){
                 if(validGlossLvl(arrayOfGlossLvl,7)){
                     break;
                 }
+                cout<<"One of the numbers in the file is wrong please edit or try to open a different file.\n";
             }
             else{
             cout<<"Invalid data was in the file. Please try again.\n";
@@ -79,7 +81,6 @@ void readInFromFile(string arrayOfColors[],string arrayOfGlossLvl[],string array
 
 void loopThroughFile(string arrayOfColors[],string arrayOfGlossLvl[],string arrayOfInventory[],ifstream& in)
 {
-    string emptyString="";
 
     for(int i=0;i<7;i++)
     {
@@ -106,7 +107,7 @@ bool validDatainFile(string dataFromFile[],int length)
 }
 paint* typeCreation(string color,double gloss_level,double inventory)
 {
-    if(gloss_level>=0.1 && gloss_level<=5.0){
+    if(gloss_level>=0.1 and gloss_level<=5.0){
         return new flat(color,gloss_level,inventory);
     }elif(gloss_level>=10.5 and gloss_level<=25.0){
         return new Eggshell(color,gloss_level,inventory);}
@@ -217,4 +218,18 @@ void userChoiceOfPaint(int flag){
     cout<<"(4) Semi-Gloss Paint\n";
     cout<<"(5) High-Gloss Paint\n";
     cout<<((flag==0) ? "(6) Load Inventory from a File\n" : "\n");
+}
+
+void menuAfterChoice()
+{
+    cout<<"\n Please choose from one of the following options:\n";
+    cout<<"(1) Adjust inventory\n";
+    cout<<"(2) View Help for Selection\n";
+    cout<<"(3) View Current inventory\n";
+    cout<<"(4) Print inventory to File\n";
+    cout<<"(5) Quit\n";
+
+
+
+
 }
