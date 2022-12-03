@@ -21,7 +21,7 @@ void userChoiceOfPaint(int flag);
 void menuAfterChoice();
 void printAllPaints(paint* paintArray[],int length);
 
-void printALLPAINTTOFILE(paint* paintArray[],int length);
+void printToFile(paint* paintArray[],int length);
 
 int main(void)
 {
@@ -61,7 +61,18 @@ int main(void)
             cout<<"\n Current inventory\n";
             printAllPaints(allPaintStuff,7);
         }
-
+        if(userChoice==4){
+            printToFile(allPaintStuff,7);
+        }
+        if(userChoice==5){
+            for(int i=0;i<7;i++)
+            {
+                allPaintStuff[i]->help();
+            }
+            printAllPaints(allPaintStuff,7);
+            break;
+        }
+    
     }
 
 
@@ -266,11 +277,23 @@ void printToFile(paint* paintArray[],int length)
 {
     while(true){
     ofstream out;
-    
-    out.open("inventory.txt");
-    for(int i=0;i<length;i++){
-        out<<*paintArray[i]<<endl;
+    string nameOfFile="";
+    getline(cin>>ws,nameOfFile);
+
+    out.open(nameOfFile);
+    if(!out.fail()){
+        
+    for(int i=0;i<length;i++)
+    {
+        out<<paintArray[i]->getColor()<<endl;
+        out<<paintArray[i]->getInventory()<<endl;
+        out<<paintArray[i]->getGlosslvl()<<endl;
+        out<<endl;
     }
     out.close();
+    break;
+        }
+    cout<<"Error opening file. Please try again.\n";
     }
-}
+    }
+
