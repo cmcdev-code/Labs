@@ -39,7 +39,7 @@ void printAllPaints(paint* paintArray[],int length);
 //will output the data to a file that is in the correct format
 void printToFile(paint* paintArray[],int length);
 
-int main(void)
+int main()
 {
     //array of pointers to the base class that will hold the classes that inherit from the base class
     paint *  allPaintStuff[7];
@@ -59,44 +59,61 @@ int main(void)
             //reading the data in from the file and will ask the user for the name of the file and do the error checking 
             readInFromFile(arrayOfColors,arrayOfGlossLvl,arrayOfInventory);
             
+            //after the data is read in from the file then it will dynamicly create the objects 
             for(int i=0;i<7;i++)
             {
                 allPaintStuff[i]=typeCreation(arrayOfColors[i],stod(arrayOfGlossLvl[i]),stod(arrayOfInventory[i]));
-            }break;
+            }break;//breaks out of the loop 
         }
-        else {
+        else {//if they 1-5 then it will just ask the user for the inventory
             allPaintStuff[i]=typeCreation(userChoice);
         }
     }
+    
     while(true){
+        //menu that is after the array is filled with objects
         menuAfterChoice();
+        //asking for user input and error checking it in the range 
         int userChoice=userInput("Please enter your choice: ",1,5);
         if(userChoice==1){
             cout<<"\n Which Object (1-7) do you wish to adjust the inventory of?\n";
-            printAllPaints(allPaintStuff,7);
+            printAllPaints(allPaintStuff,7);//prints the whole inventory 
+            //asks for which inventory number they want to ajust and also asks for the new inventory and will store it in the corresponding number 
             allPaintStuff[userInput("Please enter your choice: ",1,7)-1]->setInventory(userInput("How many cans should be in inventory for this paint:",0.0f,1000000.0f));
         }
         if(userChoice==2){
             cout<<"\n Which inventory item do you want to see the inventory help on?\n";
+            //will ask for which item they want to see the help on and will print the help for that item 
             allPaintStuff[userInput("Please enter your choice: ",1,7)-1]->help();
         }
         if(userChoice==3){
+            //will print out the whole current inventory 
             cout<<"\n Current inventory\n";
             printAllPaints(allPaintStuff,7);
         }
         if(userChoice==4){
+            //will print the whole inventory to a file in the same format that files are read in as 
             printToFile(allPaintStuff,7);
         }
         if(userChoice==5){
+            //prints all the help of the inventory 
             for(int i=0;i<7;i++)
             {
                 allPaintStuff[i]->help();
             }
+            //prints the whole inventory 
             printAllPaints(allPaintStuff,7);
             break;
         }
     
     }
+
+    
+    for(int i=0;i<7;i++){
+        delete allPaintStuff[i];
+    }
+
+    return 0;
 }
 
 
