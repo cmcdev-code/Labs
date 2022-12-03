@@ -276,6 +276,7 @@ for(int i=0;i<length;i++){
 void printToFile(paint* paintArray[],int length)
 {
     while(true){
+    cout<<"Please enter the file name that you would like to output to.\n";
     ofstream out;
     string nameOfFile="";
     getline(cin>>ws,nameOfFile);
