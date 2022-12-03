@@ -48,7 +48,7 @@ virtual void help()=0;
 //overloading the << operator
 friend std::ostream& operator<<(std::ostream& out,const paint& localObj)
 {
-    out<<std::setw(15)<<std::right<<localObj.getColor()<<std::setw(15)<<std::right<<localObj.getInventory()<<std::setw(15)<<std::right<<std::fixed<<std::setprecision(6)<<localObj.getGlosslvl();
+    out<<std::setw(18)<<std::right<<localObj.getColor()<<std::setw(17)<<std::right<<std::fixed<<std::setprecision(2)<<localObj.getInventory()<<std::setw(15)<<std::right<<std::fixed<<std::setprecision(6)<<localObj.getGlosslvl();
     return out;
 
 }

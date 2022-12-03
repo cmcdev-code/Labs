@@ -2,6 +2,7 @@
 #include <fstream>
 #define elif else if
 
+
 using namespace std;
 void readInFromFile(string arrayOfColors[],string arrayOfGlossLvl[],string arrayOfInventory[]);
 void loopThroughFile(string arrayOfColors[],string arrayOfGlossLvl[],string arrayOfInventory[],ifstream& in);
@@ -18,7 +19,9 @@ int userInput(string txtOut,int lower,int upper);
 void userChoiceOfPaint(int flag);
 
 void menuAfterChoice();
+void printAllPaints(paint* paintArray[],int length);
 
+void printALLPAINTTOFILE(paint* paintArray[],int length);
 
 int main(void)
 {
@@ -41,6 +44,24 @@ int main(void)
         else {
             allPaintStuff[i]=typeCreation(userChoice);
         }
+    }
+    while(true){
+        menuAfterChoice();
+        int userChoice=userInput("Please enter your choice: ",1,5);
+        if(userChoice==1){
+            cout<<"\n Which Object (1-7) do you wish to adjust the inventory of?\n";
+            printAllPaints(allPaintStuff,7);
+            allPaintStuff[userInput("Please enter your choice: ",1,7)-1]->setInventory(userInput("How many cans should be in inventory for this paint:",0.0f,1000000.0f));
+        }
+        if(userChoice==2){
+            cout<<"\n Which inventory item do you want to see the inventory help on?\n";
+            allPaintStuff[userInput("Please enter your choice: ",1,7)-1]->help();
+        }
+        if(userChoice==3){
+            cout<<"\n Current inventory\n";
+            printAllPaints(allPaintStuff,7);
+        }
+
     }
 
 
@@ -75,6 +96,7 @@ void readInFromFile(string arrayOfColors[],string arrayOfGlossLvl[],string array
             cout<<"Invalid data was in the file. Please try again.\n";
             }
         }
+        in.close();
     }
 
 }
@@ -232,4 +254,23 @@ void menuAfterChoice()
 
 
 
+}
+void printAllPaints(paint* paintArray[],int length)
+{cout<<"#:      Paint Color   Number of Cans  Gloss level(%)\n";
+for(int i=0;i<length;i++){
+    cout<<i+1<<*paintArray[i]<<endl;
+}
+
+}
+void printToFile(paint* paintArray[],int length)
+{
+    while(true){
+    ofstream out;
+    
+    out.open("inventory.txt");
+    for(int i=0;i<length;i++){
+        out<<*paintArray[i]<<endl;
+    }
+    out.close();
+    }
 }
